@@ -60,6 +60,11 @@ resource "aws_ecs_task_definition" "splunk-service-def" {
             containerPort = 2049
             hostPort      = 2049
             protocol      = "tcp"
+          },
+          {
+            "containerPort" = 8088
+            "hostPort"      = 8088
+            "protocol"      = "tcp"
           }
         ]
         volumesFrom = []

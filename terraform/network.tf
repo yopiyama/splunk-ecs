@@ -110,6 +110,16 @@ resource "aws_security_group_rule" "splunk-sg-ingress-transfer" {
   cidr_blocks = ["${var.home_ip}", "${var.vpc_cidr}"]
 }
 
+resource "aws_security_group_rule" "splunk-sg-ingress-http-collector" {
+  security_group_id = aws_security_group.splunk-sg.id
+
+  type              = "ingress"
+  from_port         = 8088
+  to_port           = 8088
+  protocol          = "tcp"
+  cidr_blocks = ["${var.home_ip}", "${var.vpc_cidr}"]
+}
+
 resource "aws_security_group" "efs-sg" {
   name   = "efs-sg"
   vpc_id = aws_vpc.main.id
